@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        'inter': ['Inter', 'system-ui', 'sans-serif'],
+        'source': ['Source Sans Pro', 'system-ui', 'sans-serif'],
+        'mono': ['Roboto Mono', 'Consolas', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",

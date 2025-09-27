@@ -6,61 +6,64 @@
 
 @layer base {
   :root {
-    /* Enterprise dark theme - Professional colors */
-    --background: 220 13% 9%;
-    --foreground: 220 9% 92%;
+    /* Capital IQ Pro Color Scheme */
+    --background: 210 24% 8%;           /* Deep navy background */
+    --foreground: 210 6% 92%;           /* Light text */
 
-    --card: 220 13% 11%;
-    --card-foreground: 220 9% 92%;
+    --card: 210 20% 11%;                /* Dark blue cards */
+    --card-foreground: 210 6% 92%;      /* Light card text */
 
-    --popover: 220 13% 11%;
-    --popover-foreground: 220 9% 92%;
+    --popover: 210 20% 11%;
+    --popover-foreground: 210 6% 92%;
 
-    --primary: 220 70% 50%;
-    --primary-foreground: 220 9% 92%;
+    --primary: 204 94% 65%;              /* Capital IQ blue */
+    --primary-foreground: 210 24% 8%;
 
-    --secondary: 220 13% 15%;
-    --secondary-foreground: 220 9% 92%;
+    --secondary: 210 16% 16%;            /* Darker secondary */
+    --secondary-foreground: 210 6% 92%;
 
-    --muted: 220 13% 15%;
-    --muted-foreground: 220 9% 65%;
+    --muted: 210 16% 16%;
+    --muted-foreground: 210 6% 65%;     /* Mid-tone text */
 
-    --accent: 220 70% 50%;
-    --accent-foreground: 220 9% 92%;
+    --accent: 204 94% 65%;
+    --accent-foreground: 210 24% 8%;
 
-    --destructive: 0 65% 51%;
-    --destructive-foreground: 220 9% 92%;
+    --destructive: 0 84% 65%;           /* Red for losses */
+    --destructive-foreground: 210 6% 92%;
 
-    --border: 220 13% 18%;
-    --input: 220 13% 15%;
-    --ring: 220 70% 50%;
+    --border: 210 16% 20%;              /* Subtle borders */
+    --input: 210 16% 16%;
+    --ring: 204 94% 65%;
 
-    /* Enterprise chart colors - Professional palette */
-    --success: 142 69% 58%;
-    --success-foreground: 220 9% 92%;
-    --warning: 38 92% 65%;
-    --warning-foreground: 220 9% 9%;
-    --chart-1: 220 70% 60%;
-    --chart-2: 142 69% 58%;
-    --chart-3: 0 65% 58%;
-    --chart-4: 38 92% 65%;
-    --chart-5: 262 83% 70%;
-    --chart-6: 173 80% 40%;
-
-    /* Grid and layout - Sharp, minimal */
-    --dashboard-gap: 0.25rem;
-    --header-height: 2.5rem;
+    /* Financial data colors - Capital IQ palette */
+    --success: 142 76% 45%;             /* Financial green */
+    --success-foreground: 210 6% 92%;
+    --warning: 45 93% 58%;              /* Attention orange */
+    --warning-foreground: 210 24% 8%;
     
-    --radius: 0.125rem; /* Minimal rounding */
+    /* Chart colors - Professional financial palette */
+    --chart-1: 204 94% 65%;             /* Primary blue */
+    --chart-2: 142 76% 45%;             /* Success green */
+    --chart-3: 45 93% 58%;              /* Warning orange */
+    --chart-4: 0 84% 65%;               /* Destructive red */
+    --chart-5: 280 65% 65%;             /* Purple */
+    --chart-6: 173 80% 45%;             /* Teal */
 
-    --sidebar-background: 220 13% 11%;
-    --sidebar-foreground: 220 9% 92%;
-    --sidebar-primary: 220 70% 50%;
-    --sidebar-primary-foreground: 220 9% 92%;
-    --sidebar-accent: 220 13% 15%;
-    --sidebar-accent-foreground: 220 9% 92%;
-    --sidebar-border: 220 13% 18%;
-    --sidebar-ring: 220 70% 50%;
+    /* Layout variables */
+    --dashboard-gap: 0.125rem;          /* Tighter spacing */
+    --header-height: 2rem;              /* Compact header */
+    
+    --radius: 0.125rem;                 /* Minimal rounding */
+
+    /* Sidebar variables */
+    --sidebar-background: 210 20% 11%;
+    --sidebar-foreground: 210 6% 92%;
+    --sidebar-primary: 204 94% 65%;
+    --sidebar-primary-foreground: 210 24% 8%;
+    --sidebar-accent: 210 16% 16%;
+    --sidebar-accent-foreground: 210 6% 92%;
+    --sidebar-border: 210 16% 20%;
+    --sidebar-ring: 204 94% 65%;
   }
 
   .dark {
@@ -74,17 +77,19 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter antialiased;
+    @apply bg-background text-foreground font-source antialiased text-sm;
+    font-feature-settings: "tnum" 1; /* Tabular numbers for financial data */
   }
 
-  /* Long-term investor utilities */
+  /* Capital IQ Pro styling */
   .dashboard-container {
-    @apply min-h-screen p-1;
+    @apply min-h-screen p-0.5;
   }
 
   .chart-container {
-    @apply bg-card border border-border p-2 h-full overflow-hidden;
-    border-radius: 0.25rem; /* Slightly more rounded for readability */
+    @apply bg-card border border-border p-1.5 h-full overflow-hidden;
+    border-radius: 0.125rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   .data-positive {
@@ -99,39 +104,58 @@
     @apply text-muted-foreground;
   }
 
-  /* Visual hierarchy helpers */
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  /* Financial data styling */
+  .financial-value {
+    @apply font-mono font-medium;
+    font-feature-settings: "tnum" 1;
   }
 
-  /* Sparkline styles for mini trends */
-  .sparkline {
-    @apply h-6 w-16 opacity-60;
+  .financial-change-positive {
+    @apply text-success font-semibold;
   }
 
-  /* Outlier highlighting */
-  .outlier-glow {
-    box-shadow: 0 0 6px hsl(var(--primary) / 0.4);
+  .financial-change-negative {
+    @apply text-destructive font-semibold;
   }
 
-  .outlier-glow-negative {
-    box-shadow: 0 0 6px hsl(var(--destructive) / 0.4);
+  .financial-ticker {
+    @apply font-mono text-xs font-medium tracking-wide;
   }
 
-  .outlier-glow-positive {
-    box-shadow: 0 0 6px hsl(var(--success) / 0.4);
+  .section-header {
+    @apply text-[9px] font-bold text-muted-foreground tracking-widest uppercase;
+    letter-spacing: 0.1em;
   }
 
-  /* Section organization */
-  .section-divider {
-    @apply relative w-full h-px bg-gradient-to-r from-transparent via-border to-transparent;
+  /* Dense financial layout */
+  .financial-row {
+    @apply flex items-center justify-between py-0.5 px-1 hover:bg-muted/20 transition-colors;
   }
 
-  .section-label {
-    @apply absolute -top-2 left-4 bg-background px-2 text-[8px] font-semibold text-muted-foreground tracking-widest uppercase;
+  .financial-grid {
+    @apply grid gap-0.5;
+  }
+
+  /* Capital IQ blue highlights */
+  .ciq-highlight {
+    @apply bg-primary/10 border-l-2 border-primary;
+  }
+
+  .ciq-accent {
+    @apply text-primary font-semibold;
+  }
+
+  /* Professional table styling */
+  .data-table {
+    @apply w-full border-collapse;
+  }
+
+  .data-table th {
+    @apply text-[10px] font-semibold text-muted-foreground uppercase tracking-wide p-1 border-b border-border;
+  }
+
+  .data-table td {
+    @apply text-xs p-1 border-b border-border/50;
   }
 
   /* React Grid Layout styles */
