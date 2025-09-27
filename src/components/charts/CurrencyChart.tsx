@@ -56,8 +56,8 @@ export const CurrencyChart = ({ timeInterval }: CurrencyChartProps) => {
 
   return (
     <div className="chart-container">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-semibold text-foreground">Currency Exchange Rates</h3>
+      <div className="flex justify-between items-center mb-2">
+        <h3 className="text-sm font-semibold text-foreground">Currency Exchange Rates</h3>
         <div className="flex gap-1">
           <Button
             variant={baseCurrency === 'USD' ? "default" : "outline"}
@@ -77,7 +77,7 @@ export const CurrencyChart = ({ timeInterval }: CurrencyChartProps) => {
           </Button>
         </div>
       </div>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={200}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
           <XAxis 

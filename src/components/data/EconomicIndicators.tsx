@@ -31,17 +31,17 @@ const formatIndicator = (value: number, type: 'unemployment' | 'inflation' | 'cp
 export const EconomicIndicators = () => {
   return (
     <div className="chart-container">
-      <h3 className="text-lg font-semibold mb-4 text-foreground">Economic Indicators (%)</h3>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
+      <h3 className="text-sm font-semibold mb-2 text-foreground">Economic Indicators (%)</h3>
+      <div className="overflow-x-auto h-full">
+        <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border">
-              <th className="text-left py-2 px-2 text-muted-foreground font-medium">Country</th>
-              <th className="text-right py-2 px-2 text-muted-foreground font-medium">CPI</th>
-              <th className="text-right py-2 px-2 text-muted-foreground font-medium">PPI</th>
-              <th className="text-right py-2 px-2 text-muted-foreground font-medium">Unemployment</th>
-              <th className="text-right py-2 px-2 text-muted-foreground font-medium">Inflation</th>
-              <th className="text-right py-2 px-2 text-muted-foreground font-medium">GDP Growth</th>
+              <th className="text-left py-1 px-1 text-muted-foreground font-medium">Country</th>
+              <th className="text-right py-1 px-1 text-muted-foreground font-medium">CPI</th>
+              <th className="text-right py-1 px-1 text-muted-foreground font-medium">PPI</th>
+              <th className="text-right py-1 px-1 text-muted-foreground font-medium">Unemp</th>
+              <th className="text-right py-1 px-1 text-muted-foreground font-medium">Infl</th>
+              <th className="text-right py-1 px-1 text-muted-foreground font-medium">GDP</th>
             </tr>
           </thead>
           <tbody>
@@ -54,12 +54,12 @@ export const EconomicIndicators = () => {
               
               return (
                 <tr key={data.country} className="border-b border-border/50 hover:bg-muted/30">
-                  <td className="py-2 px-2 font-medium">{data.country}</td>
-                  <td className={`py-2 px-2 text-right font-mono ${cpi.colorClass}`}>{cpi.value}</td>
-                  <td className={`py-2 px-2 text-right font-mono ${ppi.colorClass}`}>{ppi.value}</td>
-                  <td className={`py-2 px-2 text-right font-mono ${unemployment.colorClass}`}>{unemployment.value}</td>
-                  <td className={`py-2 px-2 text-right font-mono ${inflation.colorClass}`}>{inflation.value}</td>
-                  <td className={`py-2 px-2 text-right font-mono ${gdp.colorClass}`}>{gdp.value}</td>
+                  <td className="py-1 px-1 font-medium text-xs">{data.country}</td>
+                  <td className={`py-1 px-1 text-right font-mono text-xs ${cpi.colorClass}`}>{cpi.value}</td>
+                  <td className={`py-1 px-1 text-right font-mono text-xs ${ppi.colorClass}`}>{ppi.value}</td>
+                  <td className={`py-1 px-1 text-right font-mono text-xs ${unemployment.colorClass}`}>{unemployment.value}</td>
+                  <td className={`py-1 px-1 text-right font-mono text-xs ${inflation.colorClass}`}>{inflation.value}</td>
+                  <td className={`py-1 px-1 text-right font-mono text-xs ${gdp.colorClass}`}>{gdp.value}</td>
                 </tr>
               );
             })}

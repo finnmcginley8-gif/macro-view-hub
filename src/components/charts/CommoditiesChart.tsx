@@ -32,8 +32,8 @@ export const CommoditiesChart = ({ timeInterval }: CommoditiesChartProps) => {
 
   return (
     <div className="chart-container">
-      <h3 className="text-lg font-semibold mb-4 text-foreground">Commodities Prices</h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <h3 className="text-sm font-semibold mb-2 text-foreground">Commodities Prices</h3>
+      <ResponsiveContainer width="100%" height={200}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
           <XAxis 

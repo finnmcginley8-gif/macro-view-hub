@@ -5,37 +5,41 @@ interface SectorsChartProps {
   timeInterval: TimeInterval;
 }
 
-const sectorsData = [
-  { sector: 'Technology', performance: 2.5, volume: 120 },
-  { sector: 'Healthcare', performance: 1.8, volume: 95 },
-  { sector: 'Financials', performance: -0.5, volume: 110 },
-  { sector: 'Energy', performance: 3.2, volume: 85 },
-  { sector: 'Consumer Disc.', performance: 0.8, volume: 75 },
-  { sector: 'Industrials', performance: 1.2, volume: 88 },
-  { sector: 'Materials', performance: -1.1, volume: 65 },
-  { sector: 'Utilities', performance: 0.3, volume: 45 },
-  { sector: 'Real Estate', performance: -0.8, volume: 55 },
-  { sector: 'Telecom', performance: 0.1, volume: 38 },
-];
+// More realistic sector performance data
+const generateSectorsData = () => {
+  const sectors = [
+    'Technology', 'Healthcare', 'Financials', 'Energy', 'Consumer Disc.',
+    'Industrials', 'Materials', 'Utilities', 'Real Estate', 'Telecom'
+  ];
+  
+  return sectors.map(sector => ({
+    sector,
+    performance: (Math.random() - 0.4) * 5, // More realistic range -2% to +3%
+    volume: Math.round(Math.random() * 50 + 50), // Volume in millions
+  }));
+};
 
 export const SectorsChart = ({ timeInterval }: SectorsChartProps) => {
+  const sectorsData = generateSectorsData();
   return (
     <div className="chart-container">
-      <h3 className="text-lg font-semibold mb-4 text-foreground">US Sectors Performance (%)</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={sectorsData} margin={{ bottom: 45 }}>
+      <h3 className="text-sm font-semibold mb-2 text-foreground">US Sectors Performance (%)</h3>
+      <ResponsiveContainer width="100%" height={200}>
+        <BarChart data={sectorsData} margin={{ bottom: 35 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
           <XAxis 
             dataKey="sector" 
             stroke="hsl(var(--muted-foreground))"
-            fontSize={10}
+            fontSize={8}
             angle={-45}
             textAnchor="end"
-            height={60}
+            height={45}
+            tick={{ fontSize: 8 }}
           />
           <YAxis 
             stroke="hsl(var(--muted-foreground))"
-            fontSize={10}
+            fontSize={8}
+            tick={{ fontSize: 8 }}
           />
           <Tooltip 
             contentStyle={{

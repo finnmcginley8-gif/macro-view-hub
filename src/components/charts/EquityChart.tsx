@@ -5,22 +5,38 @@ interface EquityChartProps {
   timeInterval: TimeInterval;
 }
 
-// Mock data for different indices
+// More realistic stock market data generation
 const generateMockData = (interval: TimeInterval) => {
   const dataPoints = interval === '1D' ? 24 : interval === '1W' ? 7 : interval === '1M' ? 30 : 365;
   const data = [];
+  
+  // Base prices for major indices
+  let basePrices = {
+    SP500: 4200,
+    FTSE: 7800,
+    CAC40: 7200,
+    NIKKEI: 33000,
+    DAX: 16000,
+  };
   
   for (let i = 0; i < dataPoints; i++) {
     const baseDate = new Date();
     baseDate.setDate(baseDate.getDate() - (dataPoints - i));
     
+    // Generate realistic stock movements with proper volatility
+    Object.keys(basePrices).forEach(index => {
+      const volatility = interval === '1D' ? 0.002 : interval === '1W' ? 0.01 : 0.03;
+      const change = (Math.random() - 0.5) * 2 * volatility;
+      basePrices[index] *= (1 + change);
+    });
+    
     data.push({
-      date: baseDate.toLocaleDateString(),
-      SP500: 4200 + Math.random() * 400 - 200,
-      FTSE: 7800 + Math.random() * 800 - 400,
-      CAC40: 7200 + Math.random() * 600 - 300,
-      NIKKEI: 33000 + Math.random() * 3000 - 1500,
-      DAX: 16000 + Math.random() * 2000 - 1000,
+      date: interval === '1D' ? baseDate.toLocaleTimeString() : baseDate.toLocaleDateString(),
+      SP500: Math.round(basePrices.SP500 * 100) / 100,
+      FTSE: Math.round(basePrices.FTSE * 100) / 100,
+      CAC40: Math.round(basePrices.CAC40 * 100) / 100,
+      NIKKEI: Math.round(basePrices.NIKKEI * 100) / 100,
+      DAX: Math.round(basePrices.DAX * 100) / 100,
     });
   }
   
@@ -32,18 +48,21 @@ export const EquityChart = ({ timeInterval }: EquityChartProps) => {
 
   return (
     <div className="chart-container">
-      <h3 className="text-lg font-semibold mb-4 text-foreground">Global Equity Indices</h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <h3 className="text-sm font-semibold mb-2 text-foreground">Global Equity Indices</h3>
+      <ResponsiveContainer width="100%" height={200}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
           <XAxis 
             dataKey="date" 
             stroke="hsl(var(--muted-foreground))"
-            fontSize={10}
+            fontSize={9}
+            tick={{ fontSize: 9 }}
           />
           <YAxis 
             stroke="hsl(var(--muted-foreground))"
-            fontSize={10}
+            fontSize={9}
+            tick={{ fontSize: 9 }}
+            tickFormatter={(value) => value.toLocaleString()}
           />
           <Tooltip 
             contentStyle={{

@@ -74,18 +74,18 @@ const getCategoryColor = (category: string) => {
 export const NewsFeed = () => {
   return (
     <div className="chart-container">
-      <h3 className="text-lg font-semibold mb-4 text-foreground">Global Macro News</h3>
-      <ScrollArea className="h-[300px]">
-        <div className="space-y-4">
+      <h3 className="text-sm font-semibold mb-2 text-foreground">Global Macro News</h3>
+      <ScrollArea className="h-[120px]">
+        <div className="space-y-2">
           {mockNews.map((item) => (
-            <div key={item.id} className="border-l-2 pl-3 pb-3 border-b border-border/30 last:border-b-0" 
+            <div key={item.id} className="border-l-2 pl-2 pb-2 border-b border-border/30 last:border-b-0" 
                  style={{ borderLeftColor: getCategoryColor(item.category) }}>
-              <div className="flex items-start justify-between gap-2">
-                <h4 className="font-medium text-sm leading-tight">{item.title}</h4>
+              <div className="flex items-start justify-between gap-1">
+                <h4 className="font-medium text-xs leading-tight">{item.title}</h4>
                 <ExternalLink className="h-3 w-3 text-muted-foreground flex-shrink-0 mt-0.5" />
               </div>
-              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{item.summary}</p>
-              <div className="flex justify-between items-center mt-2">
+              <p className="text-xs text-muted-foreground mt-1 leading-relaxed line-clamp-2">{item.summary}</p>
+              <div className="flex justify-between items-center mt-1">
                 <span className="text-xs font-mono text-muted-foreground">{item.source}</span>
                 <span className="text-xs text-muted-foreground">{item.timestamp}</span>
               </div>

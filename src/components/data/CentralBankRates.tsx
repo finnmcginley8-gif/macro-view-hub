@@ -22,31 +22,31 @@ const centralBankData: Rate[] = [
 export const CentralBankRates = () => {
   return (
     <div className="chart-container">
-      <h3 className="text-lg font-semibold mb-4 text-foreground">Central Bank Interest Rates</h3>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
+      <h3 className="text-sm font-semibold mb-2 text-foreground">Central Bank Interest Rates</h3>
+      <div className="overflow-x-auto h-full">
+        <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border">
-              <th className="text-left py-2 px-3 text-muted-foreground font-medium">Country</th>
-              <th className="text-left py-2 px-3 text-muted-foreground font-medium">Central Bank</th>
-              <th className="text-right py-2 px-3 text-muted-foreground font-medium">Rate (%)</th>
-              <th className="text-right py-2 px-3 text-muted-foreground font-medium">Change</th>
-              <th className="text-right py-2 px-3 text-muted-foreground font-medium">Last Update</th>
+              <th className="text-left py-1 px-2 text-muted-foreground font-medium">Country</th>
+              <th className="text-left py-1 px-2 text-muted-foreground font-medium">Bank</th>
+              <th className="text-right py-1 px-2 text-muted-foreground font-medium">Rate (%)</th>
+              <th className="text-right py-1 px-2 text-muted-foreground font-medium">Change</th>
+              <th className="text-right py-1 px-2 text-muted-foreground font-medium">Update</th>
             </tr>
           </thead>
           <tbody>
             {centralBankData.map((rate) => (
               <tr key={rate.country} className="border-b border-border/50 hover:bg-muted/30">
-                <td className="py-2 px-3 font-medium">{rate.country}</td>
-                <td className="py-2 px-3 text-muted-foreground">{rate.bank}</td>
-                <td className="py-2 px-3 text-right font-mono">{rate.rate.toFixed(2)}</td>
-                <td className={`py-2 px-3 text-right font-mono ${
+                <td className="py-1 px-2 font-medium text-xs">{rate.country}</td>
+                <td className="py-1 px-2 text-muted-foreground text-xs">{rate.bank}</td>
+                <td className="py-1 px-2 text-right font-mono text-xs">{rate.rate.toFixed(2)}</td>
+                <td className={`py-1 px-2 text-right font-mono text-xs ${
                   rate.change > 0 ? 'data-positive' : rate.change < 0 ? 'data-negative' : 'data-neutral'
                 }`}>
                   {rate.change > 0 ? '+' : ''}{rate.change.toFixed(2)}
                 </td>
-                <td className="py-2 px-3 text-right text-muted-foreground font-mono text-xs">
-                  {rate.lastUpdate}
+                <td className="py-1 px-2 text-right text-muted-foreground font-mono text-xs">
+                  {rate.lastUpdate.slice(5)}
                 </td>
               </tr>
             ))}

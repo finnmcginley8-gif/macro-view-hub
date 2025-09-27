@@ -35,8 +35,8 @@ export const HousingChart = ({ timeInterval }: HousingChartProps) => {
 
   return (
     <div className="chart-container">
-      <h3 className="text-lg font-semibold mb-4 text-foreground">Housing Market Prices</h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <h3 className="text-sm font-semibold mb-2 text-foreground">Housing Market Prices</h3>
+      <ResponsiveContainer width="100%" height={200}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
           <XAxis 
