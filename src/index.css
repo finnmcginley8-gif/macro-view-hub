@@ -90,7 +90,7 @@
   }
 
   .chart-container {
-    @apply bg-card border border-border rounded-lg p-3 h-full overflow-hidden;
+    @apply bg-card border border-border rounded-lg p-1.5 h-full overflow-hidden;
   }
 
   .data-positive {

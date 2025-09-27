@@ -9,18 +9,28 @@ const generateCommoditiesData = (interval: TimeInterval) => {
   const dataPoints = interval === '1D' ? 24 : interval === '1W' ? 7 : interval === '1M' ? 30 : 252;
   const data = [];
   
+  let basePrices = { Gold: 1900, Silver: 22, Oil: 70, Gas: 2.5, Copper: 3.6 };
+  const trends = { Gold: 0.08, Silver: 0.06, Oil: 0.04, Gas: 0.02, Copper: 0.10 };
+  
   for (let i = 0; i < dataPoints; i++) {
     const baseDate = new Date();
     baseDate.setDate(baseDate.getDate() - (dataPoints - i));
     
+    Object.keys(basePrices).forEach(commodity => {
+      const timeProgress = i / dataPoints;
+      const trendGrowth = trends[commodity] * timeProgress * (interval === '1Y' ? 1 : 0.1);
+      const volatility = commodity === 'Gas' ? 0.03 : 0.015;
+      const change = (Math.random() - 0.47) * volatility + trendGrowth;
+      basePrices[commodity] *= (1 + change);
+    });
+    
     data.push({
       date: baseDate.toLocaleDateString(),
-      Gold: 2000 + Math.random() * 200 - 100,
-      Silver: 24 + Math.random() * 4 - 2,
-      Crude: 75 + Math.random() * 15 - 7.5,
-      NatGas: 2.8 + Math.random() * 0.6 - 0.3,
-      Copper: 3.8 + Math.random() * 0.4 - 0.2,
-      Wheat: 550 + Math.random() * 100 - 50,
+      Gold: Math.round(basePrices.Gold * 100) / 100,
+      Silver: Math.round(basePrices.Silver * 100) / 100,
+      Oil: Math.round(basePrices.Oil * 100) / 100,
+      Gas: Math.round(basePrices.Gas * 100) / 100,
+      Copper: Math.round(basePrices.Copper * 100) / 100,
     });
   }
   
@@ -32,34 +42,39 @@ export const CommoditiesChart = ({ timeInterval }: CommoditiesChartProps) => {
 
   return (
     <div className="chart-container">
-      <h3 className="text-sm font-semibold mb-2 text-foreground">Commodities Prices</h3>
+      <h3 className="text-xs font-medium mb-1 text-foreground">Commodities</h3>
       <ResponsiveContainer width="100%" height={200}>
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+          <CartesianGrid strokeDasharray="2 2" stroke="hsl(var(--border))" opacity={0.3} />
           <XAxis 
             dataKey="date" 
             stroke="hsl(var(--muted-foreground))"
-            fontSize={10}
+            fontSize={7}
+            axisLine={false}
+            tickLine={false}
           />
           <YAxis 
             stroke="hsl(var(--muted-foreground))"
-            fontSize={10}
+            fontSize={7}
+            axisLine={false}
+            tickLine={false}
+            width={30}
           />
           <Tooltip 
             contentStyle={{
               backgroundColor: 'hsl(var(--card))',
               border: '1px solid hsl(var(--border))',
-              borderRadius: '6px',
-              color: 'hsl(var(--foreground))'
+              borderRadius: '4px',
+              color: 'hsl(var(--foreground))',
+              fontSize: '10px',
+              padding: '4px 6px'
             }}
           />
-          <Legend />
-          <Line type="monotone" dataKey="Gold" stroke="hsl(var(--chart-4))" strokeWidth={2} name="Gold ($/oz)" />
-          <Line type="monotone" dataKey="Silver" stroke="hsl(var(--chart-1))" strokeWidth={2} name="Silver ($/oz)" />
-          <Line type="monotone" dataKey="Crude" stroke="hsl(var(--chart-3))" strokeWidth={2} name="Crude Oil ($/bbl)" />
-          <Line type="monotone" dataKey="NatGas" stroke="hsl(var(--chart-2))" strokeWidth={2} name="Nat Gas ($/MMBtu)" />
-          <Line type="monotone" dataKey="Copper" stroke="hsl(var(--chart-5))" strokeWidth={2} name="Copper ($/lb)" />
-          <Line type="monotone" dataKey="Wheat" stroke="hsl(var(--chart-6))" strokeWidth={2} name="Wheat (¢/bu)" />
+          <Line type="monotone" dataKey="Gold" stroke="hsl(var(--chart-4))" strokeWidth={1.5} name="Gold" dot={false} />
+          <Line type="monotone" dataKey="Silver" stroke="hsl(var(--chart-1))" strokeWidth={1.5} name="Silver" dot={false} />
+          <Line type="monotone" dataKey="Oil" stroke="hsl(var(--chart-3))" strokeWidth={1.5} name="Oil" dot={false} />
+          <Line type="monotone" dataKey="Gas" stroke="hsl(var(--chart-2))" strokeWidth={1.5} name="Gas" dot={false} />
+          <Line type="monotone" dataKey="Copper" stroke="hsl(var(--chart-5))" strokeWidth={1.5} name="Copper" dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </div>

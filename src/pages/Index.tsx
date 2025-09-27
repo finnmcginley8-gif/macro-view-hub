@@ -10,6 +10,7 @@ import { CurrencyChart } from '@/components/charts/CurrencyChart';
 import { CommoditiesChart } from '@/components/charts/CommoditiesChart';
 import { HousingChart } from '@/components/charts/HousingChart';
 import { NewsFeed } from '@/components/news/NewsFeed';
+import { BlankChart } from '@/components/charts/BlankChart';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
@@ -18,18 +19,19 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 const Index = () => {
   const [selectedInterval, setSelectedInterval] = useState<TimeInterval>('1M');
 
-  // Compact layout configuration
+  // Ultra-compact layout configuration
   const layouts = {
     lg: [
-      { i: 'equity', x: 0, y: 0, w: 6, h: 3 },
-      { i: 'sectors', x: 6, y: 0, w: 3, h: 3 },
-      { i: 'fixedIncome', x: 9, y: 0, w: 3, h: 3 },
+      { i: 'equity', x: 0, y: 0, w: 4, h: 3 },
+      { i: 'sectors', x: 4, y: 0, w: 2, h: 3 },
+      { i: 'fixedIncome', x: 6, y: 0, w: 2, h: 3 },
+      { i: 'blank', x: 8, y: 0, w: 2, h: 3 },
+      { i: 'currency', x: 10, y: 0, w: 2, h: 3 },
       { i: 'centralBanks', x: 0, y: 3, w: 6, h: 2 },
       { i: 'economic', x: 6, y: 3, w: 6, h: 2 },
-      { i: 'currency', x: 0, y: 5, w: 4, h: 3 },
-      { i: 'commodities', x: 4, y: 5, w: 4, h: 3 },
-      { i: 'housing', x: 8, y: 5, w: 4, h: 3 },
-      { i: 'news', x: 0, y: 8, w: 12, h: 2 },
+      { i: 'commodities', x: 0, y: 5, w: 4, h: 3 },
+      { i: 'housing', x: 4, y: 5, w: 4, h: 3 },
+      { i: 'news', x: 8, y: 5, w: 4, h: 3 },
     ],
     md: [
       { i: 'equity', x: 0, y: 0, w: 6, h: 3 },
@@ -114,6 +116,10 @@ const Index = () => {
         
         <div key="housing">
           <HousingChart timeInterval={selectedInterval} />
+        </div>
+        
+        <div key="blank">
+          <BlankChart />
         </div>
         
         <div key="news">

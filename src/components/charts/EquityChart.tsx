@@ -5,29 +5,45 @@ interface EquityChartProps {
   timeInterval: TimeInterval;
 }
 
-// More realistic stock market data generation
+// Realistic equity growth patterns
 const generateMockData = (interval: TimeInterval) => {
   const dataPoints = interval === '1D' ? 24 : interval === '1W' ? 7 : interval === '1M' ? 30 : 365;
   const data = [];
   
-  // Base prices for major indices
+  // Base prices with historical growth trends
   let basePrices = {
-    SP500: 4200,
-    FTSE: 7800,
-    CAC40: 7200,
-    NIKKEI: 33000,
-    DAX: 16000,
+    SP500: 3800,
+    FTSE: 7200,
+    CAC40: 6800,
+    NIKKEI: 30000,
+    DAX: 15000,
+  };
+
+  // Growth factors for realistic long-term trends
+  const growthFactors = {
+    SP500: 0.12, // 12% annual growth
+    FTSE: 0.08,  // 8% annual growth
+    CAC40: 0.09, // 9% annual growth
+    NIKKEI: 0.06, // 6% annual growth
+    DAX: 0.10,   // 10% annual growth
   };
   
   for (let i = 0; i < dataPoints; i++) {
     const baseDate = new Date();
     baseDate.setDate(baseDate.getDate() - (dataPoints - i));
     
-    // Generate realistic stock movements with proper volatility
     Object.keys(basePrices).forEach(index => {
-      const volatility = interval === '1D' ? 0.002 : interval === '1W' ? 0.01 : 0.03;
-      const change = (Math.random() - 0.5) * 2 * volatility;
-      basePrices[index] *= (1 + change);
+      const growthFactor = growthFactors[index];
+      const timeProgress = i / dataPoints;
+      
+      // Add growth trend
+      const trendGrowth = growthFactor * timeProgress * (interval === '1Y' ? 1 : interval === '1M' ? 0.08 : 0.01);
+      
+      // Add realistic volatility
+      const volatility = interval === '1D' ? 0.008 : interval === '1W' ? 0.015 : 0.025;
+      const randomChange = (Math.random() - 0.48) * volatility; // Slight upward bias
+      
+      basePrices[index] *= (1 + trendGrowth + randomChange);
     });
     
     data.push({
@@ -48,36 +64,41 @@ export const EquityChart = ({ timeInterval }: EquityChartProps) => {
 
   return (
     <div className="chart-container">
-      <h3 className="text-sm font-semibold mb-2 text-foreground">Global Equity Indices</h3>
+      <h3 className="text-xs font-medium mb-1 text-foreground">Equities</h3>
       <ResponsiveContainer width="100%" height={200}>
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+          <CartesianGrid strokeDasharray="2 2" stroke="hsl(var(--border))" opacity={0.3} />
           <XAxis 
             dataKey="date" 
             stroke="hsl(var(--muted-foreground))"
-            fontSize={9}
-            tick={{ fontSize: 9 }}
+            fontSize={7}
+            tick={{ fontSize: 7 }}
+            axisLine={false}
+            tickLine={false}
           />
           <YAxis 
             stroke="hsl(var(--muted-foreground))"
-            fontSize={9}
-            tick={{ fontSize: 9 }}
-            tickFormatter={(value) => value.toLocaleString()}
+            fontSize={7}
+            tick={{ fontSize: 7 }}
+            axisLine={false}
+            tickLine={false}
+            width={30}
           />
           <Tooltip 
             contentStyle={{
               backgroundColor: 'hsl(var(--card))',
               border: '1px solid hsl(var(--border))',
-              borderRadius: '6px',
-              color: 'hsl(var(--foreground))'
+              borderRadius: '4px',
+              color: 'hsl(var(--foreground))',
+              fontSize: '10px',
+              padding: '4px 6px'
             }}
           />
-          <Legend />
-          <Line type="monotone" dataKey="SP500" stroke="hsl(var(--chart-1))" strokeWidth={2} name="S&P 500" />
-          <Line type="monotone" dataKey="FTSE" stroke="hsl(var(--chart-2))" strokeWidth={2} name="FTSE 100" />
-          <Line type="monotone" dataKey="CAC40" stroke="hsl(var(--chart-3))" strokeWidth={2} name="CAC 40" />
-          <Line type="monotone" dataKey="NIKKEI" stroke="hsl(var(--chart-4))" strokeWidth={2} name="Nikkei 225" />
-          <Line type="monotone" dataKey="DAX" stroke="hsl(var(--chart-5))" strokeWidth={2} name="DAX" />
+          <Line type="monotone" dataKey="SP500" stroke="hsl(var(--chart-1))" strokeWidth={1.5} name="SPX" dot={false} />
+          <Line type="monotone" dataKey="FTSE" stroke="hsl(var(--chart-2))" strokeWidth={1.5} name="FTSE" dot={false} />
+          <Line type="monotone" dataKey="CAC40" stroke="hsl(var(--chart-3))" strokeWidth={1.5} name="CAC" dot={false} />
+          <Line type="monotone" dataKey="NIKKEI" stroke="hsl(var(--chart-4))" strokeWidth={1.5} name="N225" dot={false} />
+          <Line type="monotone" dataKey="DAX" stroke="hsl(var(--chart-5))" strokeWidth={1.5} name="DAX" dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </div>
