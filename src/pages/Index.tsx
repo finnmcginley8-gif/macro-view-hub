@@ -7,8 +7,8 @@ import { EnhancedFixedIncomeChart } from '@/components/charts/EnhancedFixedIncom
 import { CentralBankRates } from '@/components/data/CentralBankRates';
 import { EconomicIndicators } from '@/components/data/EconomicIndicators';
 import { HousingChart } from '@/components/charts/HousingChart';
-import { CapitalIQFavorites } from '@/components/portfolio/CapitalIQFavorites';
-import { CapitalIQChart } from '@/components/charts/CapitalIQChart';
+import { FavoriteTickers } from '@/components/portfolio/FavoriteTickers';
+import { InteractiveChart } from '@/components/charts/InteractiveChart';
 import { FilteredNewsFeed } from '@/components/news/FilteredNewsFeed';
 import { CompactCommodities } from '@/components/charts/CompactCommodities';
 import { CompactCurrency } from '@/components/charts/CompactCurrency';
@@ -125,19 +125,19 @@ const Index = () => {
   return (
     <ChartProvider>
       <div className="dashboard-container">
-        {/* Capital IQ Pro Header */}
-        <header className="bg-card border-b-2 border-primary/20 p-1.5 mb-0.5">
-          <div className="flex items-center justify-between">{}
+        {/* Long-Term Investor Header */}
+        <header className="bg-card border-b border-border p-2 mb-1">
+          <div className="flex items-center justify-between">
             <div>
-            <h1 className="text-sm font-bold text-primary tracking-tight font-source">S&P Capital IQ Pro</h1>
-            <p className="text-[11px] text-muted-foreground font-normal">Global Markets & Analytics Platform</p>
+            <h1 className="text-sm font-bold text-foreground tracking-tight">INSTITUTIONAL ANALYSIS PLATFORM</h1>
+            <p className="text-xs text-muted-foreground font-normal">Comprehensive market intelligence & structural analysis</p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <ViewTabs />
-              <div className="flex items-center gap-1.5">{}
+              <div className="flex items-center gap-2">
                 <button 
                   onClick={resetToDefault}
-                  className="text-[10px] text-muted-foreground hover:text-primary transition-colors font-medium"
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                   title="Reset layout to default"
                 >
                   Reset Layout
@@ -158,7 +158,7 @@ const Index = () => {
           onLayoutChange={handleLayoutChange}
           breakpoints={{ lg: 1200, md: 996, sm: 768 }}
           cols={{ lg: 12, md: 12, sm: 6 }}
-          rowHeight={50}
+          rowHeight={60}
           isDraggable={true}
           isResizable={true}
           compactType="vertical"
@@ -166,11 +166,11 @@ const Index = () => {
           useCSSTransforms={true}
         >
           <div key="favorites">
-            <CapitalIQFavorites />
+            <FavoriteTickers />
           </div>
           
           <div key="interactive">
-            <CapitalIQChart />
+            <InteractiveChart />
           </div>
           
           <div key="equity">
