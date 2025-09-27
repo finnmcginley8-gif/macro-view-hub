@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Responsive, WidthProvider, Layout } from 'react-grid-layout';
 import { TimeIntervalSelector, TimeInterval } from '@/components/TimeIntervalSelector';
 import { EquityChart } from '@/components/charts/EquityChart';
@@ -18,9 +18,9 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const Index = () => {
   const [selectedInterval, setSelectedInterval] = useState<TimeInterval>('1M');
-
-  // Ultra-compact layout configuration
-  const layouts = {
+  
+  // Default layout configuration
+  const defaultLayouts = {
     lg: [
       { i: 'equity', x: 0, y: 0, w: 4, h: 3 },
       { i: 'sectors', x: 4, y: 0, w: 2, h: 3 },
@@ -57,6 +57,24 @@ const Index = () => {
     ],
   };
 
+  // Load saved layouts from localStorage or use defaults
+  const [layouts, setLayouts] = useState(() => {
+    const savedLayouts = localStorage.getItem('dashboard-layouts');
+    return savedLayouts ? JSON.parse(savedLayouts) : defaultLayouts;
+  });
+
+  // Save layout changes to localStorage
+  const handleLayoutChange = (layout: Layout[], allLayouts: any) => {
+    setLayouts(allLayouts);
+    localStorage.setItem('dashboard-layouts', JSON.stringify(allLayouts));
+  };
+
+  // Reset to default layout
+  const resetToDefault = () => {
+    setLayouts(defaultLayouts);
+    localStorage.setItem('dashboard-layouts', JSON.stringify(defaultLayouts));
+  };
+
   return (
     <div className="dashboard-container">
       {/* Enterprise Header */}
@@ -66,10 +84,19 @@ const Index = () => {
             <h1 className="text-sm font-semibold text-foreground tracking-tight">GLOBAL MARKET DASHBOARD</h1>
             <p className="text-xs text-muted-foreground font-medium">Real-time market intelligence</p>
           </div>
-          <TimeIntervalSelector 
-            selectedInterval={selectedInterval}
-            onIntervalChange={setSelectedInterval}
-          />
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={resetToDefault}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              title="Reset layout to default"
+            >
+              Reset Layout
+            </button>
+            <TimeIntervalSelector 
+              selectedInterval={selectedInterval}
+              onIntervalChange={setSelectedInterval}
+            />
+          </div>
         </div>
       </header>
 
@@ -77,6 +104,7 @@ const Index = () => {
       <ResponsiveGridLayout
         className="layout"
         layouts={layouts}
+        onLayoutChange={handleLayoutChange}
         breakpoints={{ lg: 1200, md: 996, sm: 768 }}
         cols={{ lg: 12, md: 12, sm: 6 }}
         rowHeight={60}
