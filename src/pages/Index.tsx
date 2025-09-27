@@ -14,6 +14,13 @@ import { CompactCommodities } from '@/components/charts/CompactCommodities';
 import { CompactCurrency } from '@/components/charts/CompactCurrency';
 import { ViewTabs } from '@/components/layout/ViewTabs';
 import { ChartProvider } from '@/contexts/ChartContext';
+import { DemographicsProductivity } from '@/components/structural/DemographicsProductivity';
+import { DebtSustainability } from '@/components/structural/DebtSustainability';
+import { ClimateEnergyTransition } from '@/components/structural/ClimateEnergyTransition';
+import { PolicyGeopolitics } from '@/components/structural/PolicyGeopolitics';
+import { MarketStructureFlows } from '@/components/structural/MarketStructureFlows';
+import { AlternativeAssets } from '@/components/structural/AlternativeAssets';
+import { MetaSignals } from '@/components/structural/MetaSignals';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
@@ -22,20 +29,27 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 const Index = () => {
   const [selectedInterval, setSelectedInterval] = useState<TimeInterval>('1M');
   
-  // Chart-centric layout for interactive analysis
+  // Comprehensive structural analysis layout
   const defaultLayouts = {
     lg: [
       { i: 'favorites', x: 0, y: 0, w: 3, h: 3 },
       { i: 'interactive', x: 3, y: 0, w: 6, h: 4 },
-      { i: 'equity', x: 9, y: 0, w: 3, h: 3 },
-      { i: 'sectors', x: 0, y: 3, w: 3, h: 3 },
-      { i: 'fixedIncome', x: 9, y: 3, w: 3, h: 3 },
-      { i: 'commodities', x: 0, y: 6, w: 2, h: 3 },
-      { i: 'currency', x: 2, y: 6, w: 2, h: 3 },
-      { i: 'housing', x: 4, y: 6, w: 2, h: 3 },
-      { i: 'news', x: 6, y: 6, w: 3, h: 3 },
-      { i: 'centralBanks', x: 0, y: 9, w: 6, h: 2 },
-      { i: 'economic', x: 6, y: 9, w: 6, h: 2 },
+      { i: 'metaSignals', x: 9, y: 0, w: 3, h: 4 },
+      { i: 'equity', x: 0, y: 3, w: 3, h: 3 },
+      { i: 'sectors', x: 0, y: 6, w: 3, h: 3 },
+      { i: 'fixedIncome', x: 3, y: 4, w: 3, h: 3 },
+      { i: 'demographics', x: 6, y: 4, w: 3, h: 3 },
+      { i: 'debt', x: 9, y: 4, w: 3, h: 3 },
+      { i: 'climate', x: 0, y: 9, w: 3, h: 3 },
+      { i: 'policy', x: 3, y: 7, w: 3, h: 3 },
+      { i: 'marketFlow', x: 6, y: 7, w: 3, h: 3 },
+      { i: 'alternative', x: 9, y: 7, w: 3, h: 3 },
+      { i: 'commodities', x: 3, y: 10, w: 2, h: 2 },
+      { i: 'currency', x: 5, y: 10, w: 2, h: 2 },
+      { i: 'housing', x: 7, y: 10, w: 2, h: 2 },
+      { i: 'news', x: 9, y: 10, w: 3, h: 2 },
+      { i: 'centralBanks', x: 0, y: 12, w: 6, h: 2 },
+      { i: 'economic', x: 6, y: 12, w: 6, h: 2 },
     ],
     md: [
       { i: 'favorites', x: 0, y: 0, w: 6, h: 3 },
@@ -144,6 +158,34 @@ const Index = () => {
           
           <div key="fixedIncome">
             <EnhancedFixedIncomeChart />
+          </div>
+          
+          <div key="metaSignals">
+            <MetaSignals />
+          </div>
+          
+          <div key="demographics">
+            <DemographicsProductivity />
+          </div>
+          
+          <div key="debt">
+            <DebtSustainability />
+          </div>
+          
+          <div key="climate">
+            <ClimateEnergyTransition />
+          </div>
+          
+          <div key="policy">
+            <PolicyGeopolitics />
+          </div>
+          
+          <div key="marketFlow">
+            <MarketStructureFlows />
+          </div>
+          
+          <div key="alternative">
+            <AlternativeAssets />
           </div>
           
           <div key="commodities">
