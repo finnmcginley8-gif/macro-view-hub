@@ -29,53 +29,78 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 const Index = () => {
   const [selectedInterval, setSelectedInterval] = useState<TimeInterval>('1M');
   
-  // Comprehensive structural analysis layout
+  // Organized coherent layout with logical groupings
   const defaultLayouts = {
     lg: [
-      { i: 'favorites', x: 0, y: 0, w: 3, h: 3 },
+      // TOP: Command Center (Portfolio + Analysis + Overview)
+      { i: 'favorites', x: 0, y: 0, w: 3, h: 4 },
       { i: 'interactive', x: 3, y: 0, w: 6, h: 4 },
       { i: 'metaSignals', x: 9, y: 0, w: 3, h: 4 },
-      { i: 'equity', x: 0, y: 3, w: 3, h: 3 },
-      { i: 'sectors', x: 0, y: 6, w: 3, h: 3 },
-      { i: 'fixedIncome', x: 3, y: 4, w: 3, h: 3 },
-      { i: 'demographics', x: 6, y: 4, w: 3, h: 3 },
-      { i: 'debt', x: 9, y: 4, w: 3, h: 3 },
-      { i: 'climate', x: 0, y: 9, w: 3, h: 3 },
-      { i: 'policy', x: 3, y: 7, w: 3, h: 3 },
-      { i: 'marketFlow', x: 6, y: 7, w: 3, h: 3 },
-      { i: 'alternative', x: 9, y: 7, w: 3, h: 3 },
-      { i: 'commodities', x: 3, y: 10, w: 2, h: 2 },
-      { i: 'currency', x: 5, y: 10, w: 2, h: 2 },
-      { i: 'housing', x: 7, y: 10, w: 2, h: 2 },
-      { i: 'news', x: 9, y: 10, w: 3, h: 2 },
-      { i: 'centralBanks', x: 0, y: 12, w: 6, h: 2 },
-      { i: 'economic', x: 6, y: 12, w: 6, h: 2 },
+      
+      // MARKET DATA: Core Markets (Equities, Bonds, Commodities, FX)
+      { i: 'equity', x: 0, y: 4, w: 3, h: 3 },
+      { i: 'sectors', x: 3, y: 4, w: 3, h: 3 },
+      { i: 'fixedIncome', x: 6, y: 4, w: 3, h: 3 },
+      { i: 'commodities', x: 9, y: 4, w: 1.5, h: 3 },
+      { i: 'currency', x: 10.5, y: 4, w: 1.5, h: 3 },
+      
+      // STRUCTURAL ANALYSIS: Long-term Trends
+      { i: 'demographics', x: 0, y: 7, w: 3, h: 3 },
+      { i: 'debt', x: 3, y: 7, w: 3, h: 3 },
+      { i: 'climate', x: 6, y: 7, w: 3, h: 3 },
+      { i: 'policy', x: 9, y: 7, w: 3, h: 3 },
+      
+      // MARKET STRUCTURE: Flows & Alternative Assets
+      { i: 'marketFlow', x: 0, y: 10, w: 4, h: 3 },
+      { i: 'alternative', x: 4, y: 10, w: 4, h: 3 },
+      { i: 'housing', x: 8, y: 10, w: 2, h: 3 },
+      { i: 'news', x: 10, y: 10, w: 2, h: 3 },
+      
+      // ECONOMIC FOUNDATION: Central Banks & Indicators
+      { i: 'centralBanks', x: 0, y: 13, w: 6, h: 2 },
+      { i: 'economic', x: 6, y: 13, w: 6, h: 2 },
     ],
     md: [
-      { i: 'favorites', x: 0, y: 0, w: 6, h: 3 },
-      { i: 'interactive', x: 6, y: 0, w: 6, h: 4 },
-      { i: 'equity', x: 0, y: 3, w: 6, h: 3 },
-      { i: 'sectors', x: 0, y: 6, w: 6, h: 3 },
-      { i: 'fixedIncome', x: 6, y: 4, w: 6, h: 3 },
-      { i: 'commodities', x: 0, y: 9, w: 4, h: 3 },
-      { i: 'currency', x: 4, y: 9, w: 4, h: 3 },
-      { i: 'housing', x: 8, y: 9, w: 4, h: 3 },
-      { i: 'news', x: 6, y: 7, w: 6, h: 2 },
-      { i: 'centralBanks', x: 0, y: 12, w: 6, h: 2 },
-      { i: 'economic', x: 6, y: 12, w: 6, h: 2 },
+      // Stacked layout for medium screens
+      { i: 'favorites', x: 0, y: 0, w: 4, h: 4 },
+      { i: 'interactive', x: 4, y: 0, w: 8, h: 4 },
+      { i: 'metaSignals', x: 0, y: 4, w: 6, h: 3 },
+      { i: 'equity', x: 6, y: 4, w: 6, h: 3 },
+      { i: 'sectors', x: 0, y: 7, w: 4, h: 3 },
+      { i: 'fixedIncome', x: 4, y: 7, w: 4, h: 3 },
+      { i: 'commodities', x: 8, y: 7, w: 2, h: 3 },
+      { i: 'currency', x: 10, y: 7, w: 2, h: 3 },
+      { i: 'demographics', x: 0, y: 10, w: 6, h: 3 },
+      { i: 'debt', x: 6, y: 10, w: 6, h: 3 },
+      { i: 'climate', x: 0, y: 13, w: 6, h: 3 },
+      { i: 'policy', x: 6, y: 13, w: 6, h: 3 },
+      { i: 'marketFlow', x: 0, y: 16, w: 6, h: 3 },
+      { i: 'alternative', x: 6, y: 16, w: 6, h: 3 },
+      { i: 'housing', x: 0, y: 19, w: 4, h: 3 },
+      { i: 'news', x: 4, y: 19, w: 8, h: 3 },
+      { i: 'centralBanks', x: 0, y: 22, w: 6, h: 2 },
+      { i: 'economic', x: 6, y: 22, w: 6, h: 2 },
     ],
     sm: [
-      { i: 'favorites', x: 0, y: 0, w: 6, h: 3 },
-      { i: 'interactive', x: 0, y: 3, w: 6, h: 4 },
-      { i: 'equity', x: 0, y: 7, w: 6, h: 3 },
-      { i: 'sectors', x: 0, y: 10, w: 6, h: 3 },
-      { i: 'fixedIncome', x: 0, y: 13, w: 6, h: 3 },
-      { i: 'commodities', x: 0, y: 16, w: 6, h: 3 },
-      { i: 'currency', x: 0, y: 19, w: 6, h: 3 },
-      { i: 'housing', x: 0, y: 22, w: 6, h: 3 },
-      { i: 'news', x: 0, y: 25, w: 6, h: 3 },
-      { i: 'centralBanks', x: 0, y: 28, w: 6, h: 2 },
-      { i: 'economic', x: 0, y: 30, w: 6, h: 2 },
+      // Single column for mobile
+      { i: 'favorites', x: 0, y: 0, w: 6, h: 4 },
+      { i: 'interactive', x: 0, y: 4, w: 6, h: 4 },
+      { i: 'metaSignals', x: 0, y: 8, w: 6, h: 3 },
+      { i: 'equity', x: 0, y: 11, w: 6, h: 3 },
+      { i: 'sectors', x: 0, y: 14, w: 6, h: 3 },
+      { i: 'fixedIncome', x: 0, y: 17, w: 6, h: 3 },
+      { i: 'commodities', x: 0, y: 20, w: 6, h: 3 },
+      { i: 'currency', x: 0, y: 23, w: 6, h: 3 },
+      { i: 'demographics', x: 0, y: 26, w: 6, h: 3 },
+      { i: 'debt', x: 0, y: 29, w: 6, h: 3 },
+      { i: 'climate', x: 0, y: 32, w: 6, h: 3 },
+      { i: 'policy', x: 0, y: 35, w: 6, h: 3 },
+      { i: 'marketFlow', x: 0, y: 38, w: 6, h: 3 },
+      { i: 'alternative', x: 0, y: 41, w: 6, h: 3 },
+      { i: 'housing', x: 0, y: 44, w: 6, h: 3 },
+      { i: 'news', x: 0, y: 47, w: 6, h: 3 },
+      { i: 'centralBanks', x: 0, y: 50, w: 6, h: 2 },
+      { i: 'economic', x: 0, y: 52, w: 6, h: 2 },
     ],
   };
 
@@ -104,8 +129,8 @@ const Index = () => {
         <header className="bg-card border-b border-border p-2 mb-1">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-sm font-bold text-foreground tracking-tight">COMPARATIVE ANALYSIS CENTER</h1>
-              <p className="text-xs text-muted-foreground font-normal">Interactive market intelligence</p>
+            <h1 className="text-sm font-bold text-foreground tracking-tight">INSTITUTIONAL ANALYSIS PLATFORM</h1>
+            <p className="text-xs text-muted-foreground font-normal">Comprehensive market intelligence & structural analysis</p>
             </div>
             <div className="flex items-center gap-3">
               <ViewTabs />

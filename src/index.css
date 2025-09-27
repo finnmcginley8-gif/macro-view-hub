@@ -125,6 +125,15 @@
     box-shadow: 0 0 6px hsl(var(--success) / 0.4);
   }
 
+  /* Section organization */
+  .section-divider {
+    @apply relative w-full h-px bg-gradient-to-r from-transparent via-border to-transparent;
+  }
+
+  .section-label {
+    @apply absolute -top-2 left-4 bg-background px-2 text-[8px] font-semibold text-muted-foreground tracking-widest uppercase;
+  }
+
   /* React Grid Layout styles */
   .react-grid-item {
     @apply transition-all duration-200;
