@@ -1,5 +1,7 @@
 import { TrendingUp, TrendingDown, Fuel, Coins } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
+import { useChart } from '@/contexts/ChartContext';
 
 interface Commodity {
   symbol: string;
@@ -19,6 +21,24 @@ const commodities: Commodity[] = [
 ];
 
 export const CompactCommodities = () => {
+  const { addTicker, removeTicker, selectedTickers } = useChart();
+  const handleCommodityToggle = (commodity: Commodity, checked: boolean) => {
+    if (checked) {
+      addTicker({
+        symbol: commodity.symbol,
+        name: commodity.name,
+        category: 'commodity',
+        color: 'hsl(var(--chart-4))'
+      });
+    } else {
+      removeTicker(commodity.symbol);
+    }
+  };
+
+  const isTickerSelected = (symbol: string) => {
+    return selectedTickers.some(t => t.symbol === symbol);
+  };
+
   const getChangeColor = (change: number) => {
     if (change > 0) return 'text-success';
     if (change < 0) return 'text-destructive';
@@ -48,10 +68,16 @@ export const CompactCommodities = () => {
               className={`p-2 rounded border border-border/50 hover:border-border transition-colors ${getIntensityClass(commodity.changePercent)}`}
             >
               <div className="flex items-center justify-between mb-1">
-                <div className="flex items-center gap-1">
-                  <Icon className="h-3 w-3 text-muted-foreground" />
-                  <span className="text-[10px] font-medium text-foreground">{commodity.symbol}</span>
-                </div>
+              <div className="flex items-center gap-1">
+                <Checkbox
+                  id={commodity.symbol}
+                  checked={isTickerSelected(commodity.symbol)}
+                  onCheckedChange={(checked) => handleCommodityToggle(commodity, !!checked)}
+                  className="h-3 w-3"
+                />
+                <Icon className="h-3 w-3 text-muted-foreground" />
+                <span className="text-[10px] font-medium text-foreground">{commodity.symbol}</span>
+              </div>
                 {Math.abs(commodity.changePercent) > 1 && (
                   commodity.changePercent > 0 ? 
                     <TrendingUp className="h-2.5 w-2.5 text-success" /> : 

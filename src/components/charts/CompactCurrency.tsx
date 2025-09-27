@@ -1,4 +1,6 @@
 import { DollarSign, TrendingUp, TrendingDown } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { useChart } from '@/contexts/ChartContext';
 
 interface CurrencyPair {
   pair: string;
@@ -16,6 +18,24 @@ const currencyPairs: CurrencyPair[] = [
 ];
 
 export const CompactCurrency = () => {
+  const { addTicker, removeTicker, selectedTickers } = useChart();
+  const handleCurrencyToggle = (currency: CurrencyPair, checked: boolean) => {
+    if (checked) {
+      addTicker({
+        symbol: currency.pair,
+        name: currency.pair,
+        category: 'fx',
+        color: 'hsl(var(--chart-2))'
+      });
+    } else {
+      removeTicker(currency.pair);
+    }
+  };
+
+  const isTickerSelected = (symbol: string) => {
+    return selectedTickers.some(t => t.symbol === symbol);
+  };
+
   const getChangeColor = (change: number) => {
     if (change > 0) return 'text-success';
     if (change < 0) return 'text-destructive';
@@ -42,6 +62,12 @@ export const CompactCurrency = () => {
             className="flex items-center justify-between p-1.5 hover:bg-muted/30 rounded transition-colors"
           >
             <div className="flex items-center gap-2">
+              <Checkbox
+                id={currency.pair}
+                checked={isTickerSelected(currency.pair)}
+                onCheckedChange={(checked) => handleCurrencyToggle(currency, !!checked)}
+                className="h-3 w-3"
+              />
               <span className="text-sm">{currency.flag}</span>
               <span className="text-[10px] font-medium text-foreground">{currency.pair}</span>
               {Math.abs(currency.changePercent) > 0.3 && (
