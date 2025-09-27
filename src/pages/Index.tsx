@@ -11,6 +11,14 @@ import { CommoditiesChart } from '@/components/charts/CommoditiesChart';
 import { HousingChart } from '@/components/charts/HousingChart';
 import { NewsFeed } from '@/components/news/NewsFeed';
 import { BlankChart } from '@/components/charts/BlankChart';
+import { InflationRatesChart } from '@/components/charts/InflationRatesChart';
+import { ConsumerSentimentChart } from '@/components/charts/ConsumerSentimentChart';
+import { MarketBreadthChart } from '@/components/charts/MarketBreadthChart';
+import { EmergingMarketsHeatmap } from '@/components/charts/EmergingMarketsHeatmap';
+import { ThematicETFChart } from '@/components/charts/ThematicETFChart';
+import { VolatilityDashboard } from '@/components/charts/VolatilityDashboard';
+import { YieldCurveChart } from '@/components/charts/YieldCurveChart';
+import { MarketIndicators } from '@/components/data/MarketIndicators';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
@@ -22,16 +30,28 @@ const Index = () => {
   // Default layout configuration
   const defaultLayouts = {
     lg: [
-      { i: 'equity', x: 0, y: 0, w: 4, h: 3 },
-      { i: 'sectors', x: 4, y: 0, w: 2, h: 3 },
-      { i: 'fixedIncome', x: 6, y: 0, w: 2, h: 3 },
-      { i: 'blank', x: 8, y: 0, w: 2, h: 3 },
-      { i: 'currency', x: 10, y: 0, w: 2, h: 3 },
-      { i: 'centralBanks', x: 0, y: 3, w: 6, h: 2 },
-      { i: 'economic', x: 6, y: 3, w: 6, h: 2 },
-      { i: 'commodities', x: 0, y: 5, w: 4, h: 3 },
-      { i: 'housing', x: 4, y: 5, w: 4, h: 3 },
-      { i: 'news', x: 8, y: 5, w: 4, h: 3 },
+      { i: 'equity', x: 0, y: 0, w: 3, h: 3 },
+      { i: 'sectors', x: 3, y: 0, w: 2, h: 3 },
+      { i: 'fixedIncome', x: 5, y: 0, w: 2, h: 3 },
+      { i: 'currency', x: 7, y: 0, w: 2, h: 3 },
+      { i: 'commodities', x: 9, y: 0, w: 3, h: 3 },
+      
+      { i: 'inflation', x: 0, y: 3, w: 3, h: 3 },
+      { i: 'sentiment', x: 3, y: 3, w: 2, h: 3 },
+      { i: 'breadth', x: 5, y: 3, w: 2, h: 3 },
+      { i: 'volatility', x: 7, y: 3, w: 2, h: 3 },
+      { i: 'yieldCurve', x: 9, y: 3, w: 3, h: 3 },
+      
+      { i: 'centralBanks', x: 0, y: 6, w: 4, h: 2 },
+      { i: 'economic', x: 4, y: 6, w: 4, h: 2 },
+      { i: 'indicators', x: 8, y: 6, w: 4, h: 2 },
+      
+      { i: 'emerging', x: 0, y: 8, w: 3, h: 3 },
+      { i: 'thematic', x: 3, y: 8, w: 3, h: 3 },
+      { i: 'housing', x: 6, y: 8, w: 3, h: 3 },
+      { i: 'blank', x: 9, y: 8, w: 3, h: 3 },
+      
+      { i: 'news', x: 0, y: 11, w: 12, h: 2 },
     ],
     md: [
       { i: 'equity', x: 0, y: 0, w: 6, h: 3 },
@@ -140,6 +160,38 @@ const Index = () => {
         
         <div key="commodities">
           <CommoditiesChart timeInterval={selectedInterval} />
+        </div>
+        
+        <div key="inflation">
+          <InflationRatesChart timeInterval={selectedInterval} />
+        </div>
+        
+        <div key="sentiment">
+          <ConsumerSentimentChart timeInterval={selectedInterval} />
+        </div>
+        
+        <div key="breadth">
+          <MarketBreadthChart timeInterval={selectedInterval} />
+        </div>
+        
+        <div key="volatility">
+          <VolatilityDashboard timeInterval={selectedInterval} />
+        </div>
+        
+        <div key="yieldCurve">
+          <YieldCurveChart timeInterval={selectedInterval} />
+        </div>
+        
+        <div key="emerging">
+          <EmergingMarketsHeatmap timeInterval={selectedInterval} />
+        </div>
+        
+        <div key="thematic">
+          <ThematicETFChart timeInterval={selectedInterval} />
+        </div>
+        
+        <div key="indicators">
+          <MarketIndicators />
         </div>
         
         <div key="housing">
