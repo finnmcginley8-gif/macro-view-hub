@@ -6,11 +6,13 @@ import { SectorsChart } from '@/components/charts/SectorsChart';
 import { FixedIncomeChart } from '@/components/charts/FixedIncomeChart';
 import { CentralBankRates } from '@/components/data/CentralBankRates';
 import { EconomicIndicators } from '@/components/data/EconomicIndicators';
-import { CurrencyChart } from '@/components/charts/CurrencyChart';
-import { CommoditiesChart } from '@/components/charts/CommoditiesChart';
 import { HousingChart } from '@/components/charts/HousingChart';
-import { NewsFeed } from '@/components/news/NewsFeed';
-import { BlankChart } from '@/components/charts/BlankChart';
+import { FavoriteTickers } from '@/components/portfolio/FavoriteTickers';
+import { PerformanceCenter } from '@/components/portfolio/PerformanceCenter';
+import { FilteredNewsFeed } from '@/components/news/FilteredNewsFeed';
+import { CompactCommodities } from '@/components/charts/CompactCommodities';
+import { CompactCurrency } from '@/components/charts/CompactCurrency';
+import { ViewTabs } from '@/components/layout/ViewTabs';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
@@ -19,41 +21,46 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 const Index = () => {
   const [selectedInterval, setSelectedInterval] = useState<TimeInterval>('1M');
   
-  // Default layout configuration
+  // Default layout configuration - Long-term investor focused
   const defaultLayouts = {
     lg: [
-      { i: 'equity', x: 0, y: 0, w: 4, h: 3 },
-      { i: 'sectors', x: 4, y: 0, w: 2, h: 3 },
-      { i: 'fixedIncome', x: 6, y: 0, w: 2, h: 3 },
-      { i: 'blank', x: 8, y: 0, w: 2, h: 3 },
-      { i: 'currency', x: 10, y: 0, w: 2, h: 3 },
-      { i: 'centralBanks', x: 0, y: 3, w: 6, h: 2 },
-      { i: 'economic', x: 6, y: 3, w: 6, h: 2 },
-      { i: 'commodities', x: 0, y: 5, w: 4, h: 3 },
-      { i: 'housing', x: 4, y: 5, w: 4, h: 3 },
-      { i: 'news', x: 8, y: 5, w: 4, h: 3 },
+      { i: 'favorites', x: 0, y: 0, w: 3, h: 3 },
+      { i: 'performance', x: 3, y: 0, w: 6, h: 3 },
+      { i: 'equity', x: 9, y: 0, w: 3, h: 3 },
+      { i: 'sectors', x: 0, y: 3, w: 2, h: 3 },
+      { i: 'fixedIncome', x: 2, y: 3, w: 2, h: 3 },
+      { i: 'commodities', x: 4, y: 3, w: 2, h: 3 },
+      { i: 'currency', x: 6, y: 3, w: 2, h: 3 },
+      { i: 'housing', x: 8, y: 3, w: 2, h: 3 },
+      { i: 'news', x: 10, y: 3, w: 2, h: 3 },
+      { i: 'centralBanks', x: 0, y: 6, w: 6, h: 2 },
+      { i: 'economic', x: 6, y: 6, w: 6, h: 2 },
     ],
     md: [
-      { i: 'equity', x: 0, y: 0, w: 6, h: 3 },
-      { i: 'sectors', x: 6, y: 0, w: 6, h: 3 },
-      { i: 'fixedIncome', x: 0, y: 3, w: 6, h: 3 },
-      { i: 'centralBanks', x: 6, y: 3, w: 6, h: 3 },
-      { i: 'economic', x: 0, y: 6, w: 12, h: 2 },
-      { i: 'currency', x: 0, y: 8, w: 4, h: 3 },
-      { i: 'commodities', x: 4, y: 8, w: 4, h: 3 },
-      { i: 'housing', x: 8, y: 8, w: 4, h: 3 },
-      { i: 'news', x: 0, y: 11, w: 12, h: 2 },
+      { i: 'favorites', x: 0, y: 0, w: 6, h: 3 },
+      { i: 'performance', x: 6, y: 0, w: 6, h: 3 },
+      { i: 'equity', x: 0, y: 3, w: 6, h: 3 },
+      { i: 'sectors', x: 6, y: 3, w: 6, h: 3 },
+      { i: 'fixedIncome', x: 0, y: 6, w: 4, h: 3 },
+      { i: 'commodities', x: 4, y: 6, w: 4, h: 3 },
+      { i: 'currency', x: 8, y: 6, w: 4, h: 3 },
+      { i: 'housing', x: 0, y: 9, w: 4, h: 3 },
+      { i: 'news', x: 4, y: 9, w: 8, h: 3 },
+      { i: 'centralBanks', x: 0, y: 12, w: 6, h: 2 },
+      { i: 'economic', x: 6, y: 12, w: 6, h: 2 },
     ],
     sm: [
-      { i: 'equity', x: 0, y: 0, w: 6, h: 3 },
-      { i: 'sectors', x: 0, y: 3, w: 6, h: 3 },
-      { i: 'fixedIncome', x: 0, y: 6, w: 6, h: 3 },
-      { i: 'centralBanks', x: 0, y: 9, w: 6, h: 2 },
-      { i: 'economic', x: 0, y: 11, w: 6, h: 2 },
-      { i: 'currency', x: 0, y: 13, w: 6, h: 3 },
-      { i: 'commodities', x: 0, y: 16, w: 6, h: 3 },
-      { i: 'housing', x: 0, y: 19, w: 6, h: 3 },
-      { i: 'news', x: 0, y: 22, w: 6, h: 2 },
+      { i: 'favorites', x: 0, y: 0, w: 6, h: 3 },
+      { i: 'performance', x: 0, y: 3, w: 6, h: 3 },
+      { i: 'equity', x: 0, y: 6, w: 6, h: 3 },
+      { i: 'sectors', x: 0, y: 9, w: 6, h: 3 },
+      { i: 'fixedIncome', x: 0, y: 12, w: 6, h: 3 },
+      { i: 'commodities', x: 0, y: 15, w: 6, h: 3 },
+      { i: 'currency', x: 0, y: 18, w: 6, h: 3 },
+      { i: 'housing', x: 0, y: 21, w: 6, h: 3 },
+      { i: 'news', x: 0, y: 24, w: 6, h: 3 },
+      { i: 'centralBanks', x: 0, y: 27, w: 6, h: 2 },
+      { i: 'economic', x: 0, y: 29, w: 6, h: 2 },
     ],
   };
 
@@ -77,25 +84,28 @@ const Index = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Enterprise Header */}
+      {/* Long-Term Investor Header */}
       <header className="bg-card border-b border-border p-2 mb-1">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-sm font-semibold text-foreground tracking-tight">GLOBAL MARKET DASHBOARD</h1>
-            <p className="text-xs text-muted-foreground font-medium">Real-time market intelligence</p>
+            <h1 className="text-sm font-bold text-foreground tracking-tight">INVESTOR COMMAND CENTER</h1>
+            <p className="text-xs text-muted-foreground font-normal">Long-term wealth intelligence</p>
           </div>
-          <div className="flex items-center gap-2">
-            <button 
-              onClick={resetToDefault}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              title="Reset layout to default"
-            >
-              Reset Layout
-            </button>
-            <TimeIntervalSelector 
-              selectedInterval={selectedInterval}
-              onIntervalChange={setSelectedInterval}
-            />
+          <div className="flex items-center gap-3">
+            <ViewTabs />
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={resetToDefault}
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                title="Reset layout to default"
+              >
+                Reset Layout
+              </button>
+              <TimeIntervalSelector 
+                selectedInterval={selectedInterval}
+                onIntervalChange={setSelectedInterval}
+              />
+            </div>
           </div>
         </div>
       </header>
@@ -114,6 +124,14 @@ const Index = () => {
         preventCollision={false}
         useCSSTransforms={true}
       >
+        <div key="favorites">
+          <FavoriteTickers />
+        </div>
+        
+        <div key="performance">
+          <PerformanceCenter />
+        </div>
+        
         <div key="equity">
           <EquityChart timeInterval={selectedInterval} />
         </div>
@@ -126,32 +144,28 @@ const Index = () => {
           <FixedIncomeChart timeInterval={selectedInterval} />
         </div>
         
-        <div key="centralBanks">
-          <CentralBankRates />
-        </div>
-        
-        <div key="economic">
-          <EconomicIndicators />
+        <div key="commodities">
+          <CompactCommodities />
         </div>
         
         <div key="currency">
-          <CurrencyChart timeInterval={selectedInterval} />
-        </div>
-        
-        <div key="commodities">
-          <CommoditiesChart timeInterval={selectedInterval} />
+          <CompactCurrency />
         </div>
         
         <div key="housing">
           <HousingChart timeInterval={selectedInterval} />
         </div>
         
-        <div key="blank">
-          <BlankChart />
+        <div key="news">
+          <FilteredNewsFeed />
         </div>
         
-        <div key="news">
-          <NewsFeed />
+        <div key="centralBanks">
+          <CentralBankRates />
+        </div>
+        
+        <div key="economic">
+          <EconomicIndicators />
         </div>
       </ResponsiveGridLayout>
     </div>
