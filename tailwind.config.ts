@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        'source': ['Source Sans Pro', 'system-ui', 'sans-serif'],
-        'mono': ['Roboto Mono', 'Consolas', 'monospace'],
+        'bloomberg': ['IBM Plex Mono', 'Courier Prime', 'monospace'],
+        'mono': ['IBM Plex Mono', 'Consolas', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",

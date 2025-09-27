@@ -6,64 +6,61 @@
 
 @layer base {
   :root {
-    /* Capital IQ Pro Color Scheme */
-    --background: 210 24% 8%;           /* Deep navy background */
-    --foreground: 210 6% 92%;           /* Light text */
+    /* Bloomberg Terminal Color Scheme */
+    --background: 0 0% 0%;                  /* Pure black background */
+    --foreground: 30 100% 65%;              /* Bloomberg orange text */
 
-    --card: 210 20% 11%;                /* Dark blue cards */
-    --card-foreground: 210 6% 92%;      /* Light card text */
+    --card: 0 0% 5%;                        /* Very dark cards */
+    --card-foreground: 30 100% 65%;         /* Orange card text */
 
-    --popover: 210 20% 11%;
-    --popover-foreground: 210 6% 92%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 30 100% 65%;
 
-    --primary: 204 94% 65%;              /* Capital IQ blue */
-    --primary-foreground: 210 24% 8%;
+    --primary: 210 100% 56%;                /* Bloomberg blue highlights */
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 210 16% 16%;            /* Darker secondary */
-    --secondary-foreground: 210 6% 92%;
+    --secondary: 0 0% 10%;                  /* Dark secondary */
+    --secondary-foreground: 30 100% 65%;
 
-    --muted: 210 16% 16%;
-    --muted-foreground: 210 6% 65%;     /* Mid-tone text */
+    --muted: 0 0% 15%;
+    --muted-foreground: 30 50% 50%;         /* Dimmed orange text */
 
-    --accent: 204 94% 65%;
-    --accent-foreground: 210 24% 8%;
+    --accent: 30 100% 65%;                  /* Bloomberg orange accent */
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 84% 65%;           /* Red for losses */
-    --destructive-foreground: 210 6% 92%;
+    --destructive: 0 100% 50%;              /* Bright red for losses */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 210 16% 20%;              /* Subtle borders */
-    --input: 210 16% 16%;
-    --ring: 204 94% 65%;
+    --border: 30 80% 25%;                   /* Orange borders */
+    --input: 0 0% 10%;
+    --ring: 210 100% 56%;
 
-    /* Financial data colors - Capital IQ palette */
-    --success: 142 76% 45%;             /* Financial green */
-    --success-foreground: 210 6% 92%;
-    --warning: 45 93% 58%;              /* Attention orange */
-    --warning-foreground: 210 24% 8%;
+    /* Bloomberg financial colors */
+    --success: 120 100% 50%;                /* Bright green for gains */
+    --success-foreground: 0 0% 0%;
+    --warning: 45 100% 50%;                 /* Bright yellow for warnings */
+    --warning-foreground: 0 0% 0%;
     
-    /* Chart colors - Professional financial palette */
-    --chart-1: 204 94% 65%;             /* Primary blue */
-    --chart-2: 142 76% 45%;             /* Success green */
-    --chart-3: 45 93% 58%;              /* Warning orange */
-    --chart-4: 0 84% 65%;               /* Destructive red */
-    --chart-5: 280 65% 65%;             /* Purple */
-    --chart-6: 173 80% 45%;             /* Teal */
+    /* Chart colors - Bloomberg palette */
+    --chart-1: 210 100% 56%;                /* Bloomberg blue */
+    --chart-2: 120 100% 50%;                /* Bright green */
+    --chart-3: 30 100% 65%;                 /* Bloomberg orange */
+    --chart-4: 0 100% 50%;                  /* Bright red */
+    --chart-5: 300 100% 50%;                /* Magenta */
+    --chart-6: 60 100% 50%;                 /* Yellow */
 
-    /* Layout variables */
-    --dashboard-gap: 0.125rem;          /* Tighter spacing */
-    --header-height: 2rem;              /* Compact header */
+    /* Bloomberg terminal layout */
+    --dashboard-gap: 0rem;                  /* No gaps - tiled layout */
+    --header-height: 1.5rem;                /* Compact Bloomberg header */
     
-    --radius: 0.125rem;                 /* Minimal rounding */
+    --radius: 0rem;                         /* No rounded corners */
 
-    /* Sidebar variables */
-    --sidebar-background: 210 20% 11%;
-    --sidebar-foreground: 210 6% 92%;
-    --sidebar-primary: 204 94% 65%;
-    --sidebar-primary-foreground: 210 24% 8%;
-    --sidebar-accent: 210 16% 16%;
-    --sidebar-accent-foreground: 210 6% 92%;
-    --sidebar-border: 210 16% 20%;
-    --sidebar-ring: 204 94% 65%;
+    /* Bloomberg orange theme */
+    --bloomberg-orange: 30 100% 65%;
+    --bloomberg-blue: 210 100% 56%;
+    --bloomberg-green: 120 100% 50%;
+    --bloomberg-red: 0 100% 50%;
+    --bloomberg-yellow: 45 100% 50%;
   }
 
   .dark {
@@ -77,19 +74,19 @@
   }
 
   body {
-    @apply bg-background text-foreground font-source antialiased text-sm;
+    @apply bg-background text-foreground font-bloomberg antialiased text-sm;
     font-feature-settings: "tnum" 1; /* Tabular numbers for financial data */
   }
 
-  /* Capital IQ Pro styling */
+  /* Bloomberg Terminal styling */
   .dashboard-container {
-    @apply min-h-screen p-0.5;
+    @apply min-h-screen p-0;
   }
 
   .chart-container {
-    @apply bg-card border border-border p-1.5 h-full overflow-hidden;
-    border-radius: 0.125rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    @apply bg-card border-2 border-border p-1 h-full overflow-hidden;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 1px hsl(var(--bloomberg-orange) / 0.3);
   }
 
   .data-positive {
@@ -104,58 +101,74 @@
     @apply text-muted-foreground;
   }
 
-  /* Financial data styling */
+  /* Bloomberg Terminal financial data styling */
   .financial-value {
-    @apply font-mono font-medium;
+    @apply font-mono font-medium text-foreground;
     font-feature-settings: "tnum" 1;
+    text-shadow: 0 0 2px currentColor;
   }
 
   .financial-change-positive {
-    @apply text-success font-semibold;
+    @apply text-success font-bold;
+    text-shadow: 0 0 4px hsl(var(--success));
   }
 
   .financial-change-negative {
-    @apply text-destructive font-semibold;
+    @apply text-destructive font-bold;
+    text-shadow: 0 0 4px hsl(var(--destructive));
   }
 
   .financial-ticker {
-    @apply font-mono text-xs font-medium tracking-wide;
+    @apply font-mono text-xs font-bold tracking-wider text-primary;
+    text-shadow: 0 0 3px hsl(var(--primary));
   }
 
   .section-header {
-    @apply text-[9px] font-bold text-muted-foreground tracking-widest uppercase;
-    letter-spacing: 0.1em;
+    @apply text-[9px] font-bold text-foreground tracking-widest uppercase;
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 3px currentColor;
   }
 
-  /* Dense financial layout */
+  /* Bloomberg orange title bars */
+  .bloomberg-title {
+    @apply bg-accent text-accent-foreground font-bold text-sm tracking-wide;
+    text-shadow: none;
+  }
+
+  /* Bloomberg selection highlight */
+  .bloomberg-selected {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .bloomberg-hover {
+    @apply hover:bg-primary/20 hover:border-primary;
+  }
+
+  /* Dense Bloomberg layout */
   .financial-row {
-    @apply flex items-center justify-between py-0.5 px-1 hover:bg-muted/20 transition-colors;
+    @apply flex items-center justify-between py-0 px-1 hover:bg-primary/10 transition-colors border-l-2 border-transparent hover:border-primary;
   }
 
-  .financial-grid {
-    @apply grid gap-0.5;
+  /* Bloomberg terminal grid */
+  .bloomberg-grid {
+    @apply grid gap-0;
   }
 
-  /* Capital IQ blue highlights */
-  .ciq-highlight {
-    @apply bg-primary/10 border-l-2 border-primary;
+  /* Glowing text effects */
+  .glow-orange {
+    text-shadow: 0 0 5px hsl(var(--bloomberg-orange));
   }
 
-  .ciq-accent {
-    @apply text-primary font-semibold;
+  .glow-blue {
+    text-shadow: 0 0 5px hsl(var(--bloomberg-blue));
   }
 
-  /* Professional table styling */
-  .data-table {
-    @apply w-full border-collapse;
+  .glow-green {
+    text-shadow: 0 0 5px hsl(var(--bloomberg-green));
   }
 
-  .data-table th {
-    @apply text-[10px] font-semibold text-muted-foreground uppercase tracking-wide p-1 border-b border-border;
-  }
-
-  .data-table td {
-    @apply text-xs p-1 border-b border-border/50;
+  .glow-red {
+    text-shadow: 0 0 5px hsl(var(--bloomberg-red));
   }
 
   /* React Grid Layout styles */

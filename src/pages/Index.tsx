@@ -7,8 +7,8 @@ import { EnhancedFixedIncomeChart } from '@/components/charts/EnhancedFixedIncom
 import { CentralBankRates } from '@/components/data/CentralBankRates';
 import { EconomicIndicators } from '@/components/data/EconomicIndicators';
 import { HousingChart } from '@/components/charts/HousingChart';
-import { CapitalIQFavorites } from '@/components/portfolio/CapitalIQFavorites';
-import { CapitalIQChart } from '@/components/charts/CapitalIQChart';
+import { BloombergWatchlist } from '@/components/portfolio/BloombergWatchlist';
+import { BloombergChart } from '@/components/charts/BloombergChart';
 import { FilteredNewsFeed } from '@/components/news/FilteredNewsFeed';
 import { CompactCommodities } from '@/components/charts/CompactCommodities';
 import { CompactCurrency } from '@/components/charts/CompactCurrency';
@@ -125,22 +125,22 @@ const Index = () => {
   return (
     <ChartProvider>
       <div className="dashboard-container">
-        {/* Capital IQ Pro Header */}
-        <header className="bg-card border-b-2 border-primary/20 p-1.5 mb-0.5">
+        {/* Bloomberg Terminal Header */}
+        <header className="bloomberg-title border-b-2 border-foreground p-1 mb-0">
           <div className="flex items-center justify-between">{}
             <div>
-            <h1 className="text-sm font-bold text-primary tracking-tight font-source">S&P Capital IQ Pro</h1>
-            <p className="text-[11px] text-muted-foreground font-normal">Global Markets & Analytics Platform</p>
+            <h1 className="text-sm font-bold text-accent-foreground tracking-wider font-bloomberg">BLOOMBERG TERMINAL</h1>
+            <p className="text-[10px] text-accent-foreground/80 font-mono">GLOBAL FINANCIAL MARKETS</p>
             </div>
             <div className="flex items-center gap-2">
               <ViewTabs />
               <div className="flex items-center gap-1.5">{}
                 <button 
                   onClick={resetToDefault}
-                  className="text-[10px] text-muted-foreground hover:text-primary transition-colors font-medium"
-                  title="Reset layout to default"
+                  className="text-[10px] text-accent-foreground/80 hover:text-accent-foreground transition-colors font-mono font-bold"
+                  title="RESET LAYOUT"
                 >
-                  Reset Layout
+                  RESET LAYOUT
                 </button>
                 <TimeIntervalSelector 
                   selectedInterval={selectedInterval}
@@ -158,7 +158,7 @@ const Index = () => {
           onLayoutChange={handleLayoutChange}
           breakpoints={{ lg: 1200, md: 996, sm: 768 }}
           cols={{ lg: 12, md: 12, sm: 6 }}
-          rowHeight={50}
+          rowHeight={45}
           isDraggable={true}
           isResizable={true}
           compactType="vertical"
@@ -166,11 +166,11 @@ const Index = () => {
           useCSSTransforms={true}
         >
           <div key="favorites">
-            <CapitalIQFavorites />
+            <BloombergWatchlist />
           </div>
           
           <div key="interactive">
-            <CapitalIQChart />
+            <BloombergChart />
           </div>
           
           <div key="equity">
