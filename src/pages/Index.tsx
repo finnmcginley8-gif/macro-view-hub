@@ -59,12 +59,12 @@ const Index = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Compact Header */}
-      <header className="bg-card border-b border-border p-2 mb-2">
+      {/* Enterprise Header */}
+      <header className="bg-card border-b border-border p-2 mb-1">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-lg font-bold text-foreground">Global Market Dashboard</h1>
-            <p className="text-xs text-muted-foreground font-mono">Real-time market data</p>
+            <h1 className="text-sm font-semibold text-foreground tracking-tight">GLOBAL MARKET DASHBOARD</h1>
+            <p className="text-xs text-muted-foreground font-medium">Real-time market intelligence</p>
           </div>
           <TimeIntervalSelector 
             selectedInterval={selectedInterval}

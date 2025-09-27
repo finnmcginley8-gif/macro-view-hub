@@ -6,72 +6,65 @@
 
 @layer base {
   :root {
-    /* Dark financial theme */
-    --background: 210 20% 6%;
-    --foreground: 210 20% 92%;
+    /* Enterprise dark theme - Professional colors */
+    --background: 220 13% 9%;
+    --foreground: 220 9% 92%;
 
-    --card: 210 20% 8%;
-    --card-foreground: 210 20% 92%;
+    --card: 220 13% 11%;
+    --card-foreground: 220 9% 92%;
 
-    --popover: 210 20% 8%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 220 13% 11%;
+    --popover-foreground: 220 9% 92%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 20% 6%;
+    --primary: 220 70% 50%;
+    --primary-foreground: 220 9% 92%;
 
-    --secondary: 210 20% 12%;
-    --secondary-foreground: 210 20% 92%;
+    --secondary: 220 13% 15%;
+    --secondary-foreground: 220 9% 92%;
 
-    --muted: 210 20% 12%;
-    --muted-foreground: 210 20% 65%;
+    --muted: 220 13% 15%;
+    --muted-foreground: 220 9% 65%;
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 210 20% 6%;
+    --accent: 220 70% 50%;
+    --accent-foreground: 220 9% 92%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 92%;
+    --destructive: 0 65% 51%;
+    --destructive-foreground: 220 9% 92%;
 
-    --border: 210 20% 15%;
-    --input: 210 20% 12%;
-    --ring: 217 91% 60%;
+    --border: 220 13% 18%;
+    --input: 220 13% 15%;
+    --ring: 220 70% 50%;
 
-    /* Financial specific colors */
-    --success: 142 71% 45%;
-    --success-foreground: 210 20% 92%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 210 20% 6%;
-    --chart-1: 217 91% 60%;
-    --chart-2: 142 71% 45%;
-    --chart-3: 0 84% 60%;
-    --chart-4: 38 92% 50%;
-    --chart-5: 280 100% 70%;
-    --chart-6: 173 58% 39%;
+    /* Enterprise chart colors - Professional palette */
+    --success: 142 69% 58%;
+    --success-foreground: 220 9% 92%;
+    --warning: 38 92% 65%;
+    --warning-foreground: 220 9% 9%;
+    --chart-1: 220 70% 60%;
+    --chart-2: 142 69% 58%;
+    --chart-3: 0 65% 58%;
+    --chart-4: 38 92% 65%;
+    --chart-5: 262 83% 70%;
+    --chart-6: 173 80% 40%;
 
-    /* Grid and layout */
-    --dashboard-gap: 0.5rem;
-    --header-height: 3rem;
+    /* Grid and layout - Sharp, minimal */
+    --dashboard-gap: 0.25rem;
+    --header-height: 2.5rem;
     
-    --radius: 0.5rem;
+    --radius: 0.125rem; /* Minimal rounding */
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 220 13% 11%;
+    --sidebar-foreground: 220 9% 92%;
+    --sidebar-primary: 220 70% 50%;
+    --sidebar-primary-foreground: 220 9% 92%;
+    --sidebar-accent: 220 13% 15%;
+    --sidebar-accent-foreground: 220 9% 92%;
+    --sidebar-border: 220 13% 18%;
+    --sidebar-ring: 220 70% 50%;
   }
 
   .dark {
-    /* Keep same dark theme for consistency */
+    /* Keep same enterprise theme */
   }
 }
 
@@ -81,16 +74,16 @@
   }
 
   body {
-    @apply bg-background text-foreground font-mono;
+    @apply bg-background text-foreground font-inter antialiased;
   }
 
   /* Dashboard specific utilities */
   .dashboard-container {
-    @apply min-h-screen p-2;
+    @apply min-h-screen p-1;
   }
 
   .chart-container {
-    @apply bg-card border border-border rounded-lg p-1.5 h-full overflow-hidden;
+    @apply bg-card border border-border p-2 h-full overflow-hidden;
   }
 
   .data-positive {
@@ -111,7 +104,7 @@
   }
 
   .react-grid-item.react-grid-placeholder {
-    @apply bg-primary/20 border-2 border-primary border-dashed rounded-lg;
+    @apply bg-primary/10 border border-primary;
   }
 
   .react-grid-item > .react-resizable-handle {

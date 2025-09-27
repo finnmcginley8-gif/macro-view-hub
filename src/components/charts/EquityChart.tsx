@@ -64,7 +64,7 @@ export const EquityChart = ({ timeInterval }: EquityChartProps) => {
 
   return (
     <div className="chart-container">
-      <h3 className="text-xs font-medium mb-1 text-foreground">Equities</h3>
+      <h3 className="text-xs font-medium mb-1 text-foreground tracking-tight">GLOBAL EQUITIES</h3>
       <ResponsiveContainer width="100%" height={200}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="2 2" stroke="hsl(var(--border))" opacity={0.3} />
@@ -88,7 +88,6 @@ export const EquityChart = ({ timeInterval }: EquityChartProps) => {
             contentStyle={{
               backgroundColor: 'hsl(var(--card))',
               border: '1px solid hsl(var(--border))',
-              borderRadius: '4px',
               color: 'hsl(var(--foreground))',
               fontSize: '10px',
               padding: '4px 6px'
