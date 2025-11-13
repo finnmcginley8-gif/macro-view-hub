@@ -125,19 +125,19 @@ const Index = () => {
   return (
     <ChartProvider>
       <div className="dashboard-container">
-        {/* FactSet Header */}
-        <header className="bg-card border-b border-border px-6 py-3 mb-2 shadow-sm">
+        {/* Long-Term Investor Header */}
+        <header className="bg-card border-b border-border p-2 mb-1">
           <div className="flex items-center justify-between">
             <div>
-            <h1 className="text-lg font-semibold text-primary tracking-tight">FactSet Workstation</h1>
-            <p className="text-xs text-muted-foreground font-normal mt-0.5">Market Intelligence & Analytics Platform</p>
+            <h1 className="text-sm font-bold text-foreground tracking-tight">INSTITUTIONAL ANALYSIS PLATFORM</h1>
+            <p className="text-xs text-muted-foreground font-normal">Comprehensive market intelligence & structural analysis</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <ViewTabs />
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <button 
                   onClick={resetToDefault}
-                  className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium"
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                   title="Reset layout to default"
                 >
                   Reset Layout
